@@ -3,39 +3,47 @@ class Circle {
   float y;
   float xSpeed;
   float ySpeed;
-  int radius;
-  color circleColor;
-  
-//  circle = new Circle(random(width), random(height), random(-3, 3), random(-3, 3), 50);
-  Circle(float x, float y, float xSpeed, float ySpeed, int radiusCircle, color circleColor) {
+  float radius;
+  float w;
+  float h;
+
+  Circle(float x, float y, float xSpeed, float ySpeed, float radius) {
     this.x = x;
     this.y = y;
     this.xSpeed = xSpeed;
     this.ySpeed = ySpeed;
-    radius = radiusCircle;
+    this.radius = radius;
   }
   
-    Circle(float x, float y, float xSpeed, float ySpeed,  color circleColor) {
+   Circle(float x, float y, float xSpeed, float ySpeed, float w, float h) {
     this.x = x;
     this.y = y;
     this.xSpeed = xSpeed;
     this.ySpeed = ySpeed;
-    this.radius = 20;
-  }
+    this.w = w;
+    this.h = h;
+   }
+
   void move() {
     x += xSpeed;
-    if (x < 0 || x > width) {
+    if (x <= radius/2 || x >= width-radius/2) {
       xSpeed *= -1;
+      fill(random(0, 255), random(0, 255), random(0, 255));
     }
 
     y += ySpeed;
-    if (y < 0 || y > height) {
+    if (y <= radius/2 || y >= height-radius/2) {
       ySpeed *= -1;
+      fill(random(0, 255), random(0, 255), random(0, 255));
     }
   }
   
   void display(){
-   fill(circleColor);
-   ellipse(x, y, radius, radius); 
+    if (switcher==true){
+     ellipse(x, y, radius, radius);
+    }
+      else if (switcher==false){
+       rectMode(CENTER);
+        rect(x,y,w,h);
   }
-}
+}}
